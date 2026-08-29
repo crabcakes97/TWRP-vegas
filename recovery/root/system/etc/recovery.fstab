@@ -1,0 +1,27 @@
+# 1 "vendor/mediatek/proprietary/hardware/fstab/mt6835/fstab.in.mt6835"
+# 1 "<built-in>" 1
+# 1 "<built-in>" 3
+# 356 "<built-in>" 3
+# 1 "<command line>" 1
+# 1 "<built-in>" 2
+# 1 "vendor/mediatek/proprietary/hardware/fstab/mt6835/fstab.in.mt6835" 2
+# 148 "vendor/mediatek/proprietary/hardware/fstab/mt6835/fstab.in.mt6835"
+system      /system       ext4    ro wait,slotselect,logical
+system_dlkm      /system_dlkm       ext4    ro wait,slotselect,logical
+system_ext  /system_ext   ext4    ro wait,slotselect,logical
+vendor      /vendor       ext4    ro wait,slotselect,logical
+vendor_dlkm      /vendor_dlkm       ext4    ro wait,slotselect,logical
+product     /product      ext4    ro wait,slotselect,logical
+
+/dev/block/by-name/metadata /metadata f2fs noatime,nosuid,nodev,discard wait,check,formattable,first_stage_mount
+/dev/block/by-name/userdata /data f2fs noatime,nosuid,nodev,discard,noflush_merge,fsync_mode=nobarrier,reserve_root=134217,resgid=1065,inlinecrypt wait,check,formattable,quota,latemount,resize,reservedsize=128m,checkpoint=fs,fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized+wrappedkey_v0,metadata_encryption=aes-256-xts:wrappedkey_v0,keydirectory=/metadata/vold/metadata_encryption,sysfs_path=/sys/devices/platform/soc/112b0000.ufshci,fsverity
+
+/dev/block/by-name/cid /persistent emmc defaults defaults
+/dev/block/by-name/frp /persistent emmc defaults defaults
+/dev/block/by-name/misc /misc emmc defaults defaults
+/dev/block/by-name/init_boot /init_boot emmc defaults defaults
+/dev/block/by-name/boot /boot emmc defaults first_stage_mount,nofail,slotselect
+/dev/block/by-name/vbmeta_system /vbmeta_system emmc defaults first_stage_mount,nofail,slotselect,avb=vbmeta
+/dev/block/by-name/odmdtbo /odmdtbo emmc defaults defaults
+/dev/block/by-name/dtbo /dtbo emmc defaults defaults
+/dev/block/by-name/vbmeta /vbmeta emmc defaults defaults
