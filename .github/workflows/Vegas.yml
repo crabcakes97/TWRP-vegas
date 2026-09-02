@@ -1,4 +1,4 @@
-name: Build TWRP - nevada
+name: Build TWRP - vegas
 
 on:
   workflow_dispatch:
@@ -58,23 +58,23 @@ jobs:
             --no-clone-bundle \
             --no-tags
 
-      - name: Checkout Nevada device tree
+      - name: Checkout Vegas device tree
         uses: actions/checkout@v4
         with:
-          path: twrp/device/motorola/nevada
+          path: twrp/device/motorola/vegas
 
-      - name: Verify Nevada device tree
+      - name: Verify Vegas device tree
         working-directory: twrp
         run: |
-          echo "=== Nevada device tree ==="
-          find device/motorola/nevada -maxdepth 2 -type f | sort
+          echo "=== Vegas device tree ==="
+          find device/motorola/vegas -maxdepth 2 -type f | sort
           echo
           echo "=== Prebuilt files ==="
-          ls -lah device/motorola/nevada/prebuilt/ || true
+          ls -lah device/motorola/vegas/prebuilt/ || true
           echo
           echo "=== Product files ==="
-          ls -lah device/motorola/nevada/*product*.mk \
-            device/motorola/nevada/AndroidProducts.mk \
+          ls -lah device/motorola/vegas/*product*.mk \
+            device/motorola/vegas/AndroidProducts.mk \
             2>/dev/null || true
 
       - name: Build TWRP vendor_boot
@@ -84,7 +84,7 @@ jobs:
           source build/envsetup.sh
           export ALLOW_MISSING_DEPENDENCIES=true
 
-          lunch twrp_nevada-${{ github.event.inputs.variant }}
+          lunch twrp_vegas-${{ github.event.inputs.variant }}
 
           echo "=== Build configuration ==="
           get_build_var TARGET_NO_RECOVERY || true
@@ -100,7 +100,7 @@ jobs:
         working-directory: twrp
         run: |
           set -e
-          OUT_DIR="out/target/product/nevada"
+          OUT_DIR="out/target/product/vegas"
           echo "OUT_DIR=$OUT_DIR" >> "$GITHUB_ENV"
 
           echo "=== Output directory ==="
@@ -119,7 +119,7 @@ jobs:
       - name: Upload vendor_boot image
         uses: actions/upload-artifact@v4
         with:
-          name: twrp-nevada-vendor_boot-${{ github.run_number }}
-          path: twrp/out/target/product/nevada/vendor_boot.img
+          name: twrp-vegas-vendor_boot-${{ github.run_number }}
+          path: twrp/out/target/product/vegas/vendor_boot.img
           if-no-files-found: error
           retention-days: 14
