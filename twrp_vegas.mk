@@ -11,11 +11,11 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit common TWRP configuration.
 $(call inherit-product, vendor/twrp/config/common.mk)
 
-# Inherit from Nevada device tree.
-$(call inherit-product, device/motorola/nevada/device.mk)
+# Inherit from Vegas device tree.
+$(call inherit-product, device/motorola/vegas/device.mk)
 
-PRODUCT_DEVICE := nevada
-PRODUCT_NAME := twrp_nevada
+PRODUCT_DEVICE := vegas
+PRODUCT_NAME := twrp_vegas
 PRODUCT_BRAND := motorola
-PRODUCT_MODEL := Moto G Play 2026
+PRODUCT_MODEL := Moto G Power 2026
 PRODUCT_MANUFACTURER := motorola
